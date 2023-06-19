@@ -1,10 +1,10 @@
 #include <iostream>
 #include <sstream>
 #include <cstdint>
-
+#include <cstdlib>
 #include "./state.hpp"
 #include "../config.hpp"
-
+using namespace std;
 
 /**
  * @brief evaluate the state
@@ -13,7 +13,19 @@
  */
 int State::evaluate(){
   // [TODO] design your own evaluation function
-  return 0;
+  // nothing, pawn, rook, knight, bishop, king, queen
+  static const int material_table[7] = {0, 2, 6, 7, 8, 20, 100}; // value of each chess
+  int me = 0, opponent = 0,piece_me = 0, piece_opponent;
+  // copy and alter from main.cpp line : 500+
+  for(int i = 0;i<BOARD_H;i++){
+    for(int j = 0;j<BOARD_W;j++){
+      piece_me = (this->board.board[this->player][i][j]);
+      if(piece_me) me += material_table[piece_me];
+      piece_opponent = (this->board.board[1 - this->player][i][j]);
+      if(piece_opponent) opponent += material_table[piece_opponent];
+    }
+  }
+  return (me - opponent);
 }
 
 
@@ -207,7 +219,7 @@ void State::get_legal_actions(){
       }
     }
   }
-  std::cout << "\n";
+  // std::cout << "\n";  I dont know why I comment this
   this->legal_actions = all_actions;
 }
 

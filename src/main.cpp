@@ -6,7 +6,6 @@
 #include <vector>
 #include <cassert>
 #include <cstdint> // for int8_t
-
 #include "config.hpp"
 
 
@@ -57,14 +56,14 @@ class State{
     //You may want to add more property for a state
     GameState game_state = UNKNOWN;
     Board board;
-    int player = 0; // white, 1 for black
+    int player = 0; // 0 white, 1 for black
     std::vector<Move> legal_actions; // every move.first is the same
     
     State(){};
     State(int player): player(player){};
     State(Board board): board(board){};
     State(Board board, int player): board(board), player(player){};
-    
+  
     State* next_state(Move move);
     void get_legal_actions();
     std::string encode_output();
@@ -544,3 +543,4 @@ int main(int argc, char** argv) {
     std::cerr << "Error removing file: " << file_state << "\n";
   return 0;
 }
+

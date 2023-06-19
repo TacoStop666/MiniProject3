@@ -1,8 +1,8 @@
 #include <cstdlib>
-
+#include <iostream>
 #include "../state/state.hpp"
 #include "./random.hpp"
-
+using namespace std;
 
 /**
  * @brief Randomly get a legal action

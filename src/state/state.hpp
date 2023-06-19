@@ -45,6 +45,7 @@ class State{
     //You may want to add more property for a state
     GameState game_state = UNKNOWN;
     Board board;
+    Move previous_move;
     int player = 0; // 0 for white 1 for black
     std::vector<Move> legal_actions;
     

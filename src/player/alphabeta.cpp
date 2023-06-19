@@ -3,7 +3,7 @@
 
 #include "../config.hpp"
 #include "../state/state.hpp"
-#include "../policy/random2.hpp"
+#include "../policy/alphabeta.hpp"
 
 
 State* root;
@@ -17,7 +17,6 @@ void read_board(std::ifstream& fin) {
   Board board;
   int player;
   fin >> player;
-
   for (int pl=0; pl<2; pl++) {
     for (int i=0; i<BOARD_H; i++) {
       for (int j=0; j<BOARD_W; j++) {
@@ -42,13 +41,13 @@ void write_valid_spot(std::ofstream& fout) {
   // Keep updating the output until getting killed.
   while(true) {
     // Choose a random spot.
-    auto move = Random2::get_move(root, 10); // TODO
+    auto move = alphabeta::get_move(root, 3);
     fout << move.first.first << " " << move.first.second << " "\
          << move.second.first << " " << move.second.second << std::endl;
     
     // Remember to flush the output to ensure the last action is written to file.
     fout.flush();
-    break;
+    break; // if comment, 一幀一幀跑
   }
 }
 
