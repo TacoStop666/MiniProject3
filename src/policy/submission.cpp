@@ -3,7 +3,7 @@
 #include <map>
 #include <climits>
 #include "../state/state.hpp"
-#include "./alphabeta.hpp"
+#include "./submission.hpp"
 
 using namespace std;
 
@@ -14,7 +14,7 @@ using namespace std;
  * @param depth You may need this for other policy
  * @return Move 
  */
-Move alphabeta::get_move(State *state, int depth) {
+Move submission::get_move(State *state, int depth) {
   auto actions = state->legal_actions;
   int max_value = INT_MIN;
   Move move = actions[0];
@@ -28,7 +28,7 @@ Move alphabeta::get_move(State *state, int depth) {
   }
   return move;
 }
-int alphabeta::minimax(State *state, int depth, int alpha, int beta, bool player){
+int submission::minimax(State *state, int depth, int alpha, int beta, bool player){
     if(depth == 0) return state->evaluate();
     if(player){
         state->get_legal_actions();

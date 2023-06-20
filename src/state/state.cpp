@@ -3,6 +3,7 @@
 #include <cstdint>
 #include <cstdlib>
 #include "./state.hpp"
+#include <climits>
 #include "../config.hpp"
 using namespace std;
 
@@ -20,7 +21,7 @@ int State::evaluate(){
   for(int i = 0;i<BOARD_H;i++){
     for(int j = 0;j<BOARD_W;j++){
       piece_me = (this->board.board[this->player][i][j]);
-      if(piece_me) me += material_table[piece_me];
+      if(piece_me) me += material_table[piece_me]; // when there exist an chess
       piece_opponent = (this->board.board[1 - this->player][i][j]);
       if(piece_opponent) opponent += material_table[piece_opponent];
     }
